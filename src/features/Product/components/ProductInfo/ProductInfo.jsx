@@ -41,7 +41,6 @@ function renderRelated(arrayRelated){
   }
 }
 function ProductInfo({ product }) {
-  console.log(product);
   return (
     <div>
       <section className="product_detail">

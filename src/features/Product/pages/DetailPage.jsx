@@ -15,7 +15,6 @@ function DetailPage(props) {
       try {
         const results = await productApi.get(productId);
         setProduct(results);
-        console.log(results);
       } catch (error) {
         console.log('Failed to fetch product', error);
       }

@@ -3,11 +3,8 @@ import './Style.scss';
 import swal from 'sweetalert';
 import userApi from '../../../api/userApi';
 import { useNavigate } from 'react-router-dom';
-
-//import { Test } from './RegisterJsx.styles';
-
 function RegisterJsx(props) {
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     values: {
       email: '',
@@ -15,10 +12,14 @@ function RegisterJsx(props) {
       passwordConfirm: '',
       name: '',
       phone: '',
-      gender: '',
+      gender: 'Male',
     },
     errors: {
       email: '',
+      password: '',
+      passwordConfirm: '',
+      name: '',
+      phone: '',
     },
   });
 
@@ -44,35 +45,73 @@ function RegisterJsx(props) {
         }
       }
     }
+    if (name === 'phone') {
+      if (values === '') {
+        return 'Không Được Để Trống';
+      } else {
+        let phone = /(|0)[.\- ]?[0-9][.\- ]?[0-9][.\- ]?[0-9]/;
+        if (!phone.test(values)) {
+          return 'Số Điện Thoại Không Hợp Lệ';
+        }
+      }
+    }
+    if (name === 'passwordConfirm') {
+      if (values === '') {
+        return 'Không Được Để Trống';
+      } else {
+        let passsword = form.values.password ;
+        if (values !== passsword || passsword !== values) {
+          return 'Cần xác nhận lại mật khẩu';
+        }
+      }
+    }
+    if (name === 'password') {
+      if (values === '') {
+        return 'Không Được Để Trống';
+      } else {
+        let passswordConfirm = form.values.passwordConfirm ;
+        if (passswordConfirm !== "") {
+          if (values !== passswordConfirm || passswordConfirm !== values) {
+            return 'Cần xác nhận lại mật khẩu';
+          }
+        }
+      }
+    }
     return '';
   };
   let handlesubmit = async (datas) => {
+    for (const key in form.errors) {
+      if (form.values[key] === "") {
+        swal('Hảy Điền Thông Tin Còn Trống!');
+        return;
+      }
+      if (form.errors[key] !== '') {
+        swal('Error!', form.errors[key], 'error');
+        return;
+      }
+    }
     delete datas['passwordConfirm'];
+    let requestNew = {
+      ...datas,
+      gender : datas.gender === "Male" ? true : false
+    }
 
-    let request = {
-      "email": "dfsdfsdfsdfsdfsdfsdfs",
-      "password": "sda",
-      "name": "ss",
-      "gender": true,
-      "phone": "2323"
-    };
-    const data = await userApi.sigUp(request).then((res) =>{
+  const data = await userApi.sigUp(requestNew).then((res) =>{
       if (res) {
         swal("", "Bạn Đã Đăng Ký Thành Công!", "success").then(() => {
             navigate('/home')
       });;
       }
     }).catch((err) =>{
-      console.log(err);
       swal("Error!", err.response.data.message, "error");
     });
   };
   let handeblur = (evt) => {
     let { name, value } = evt.target;
-    console.log(name);
-    console.log(value);
     let error = validation(name, value);
-    console.log(error);
+    if (error !== '') {
+      swal('Error!', error, 'error');
+    }
     setForm({
       ...form,
       errors: {
@@ -99,12 +138,11 @@ function RegisterJsx(props) {
                   placeholder="email"
                   id="email"
                 />
-
-                {/* <input name="email" onChange={handlechange} value={form.email} type="text" placeholder="email" id="email" /> */}
                 <span>(*)</span>
               </div>
               <div className="password">
                 <input
+                  onBlur={handeblur}
                   type="password"
                   placeholder="password"
                   onChange={handlechange}
@@ -117,6 +155,7 @@ function RegisterJsx(props) {
               <div className="confirm">
                 <input
                   type="password"
+                  onBlur={handeblur}
                   onChange={handlechange}
                   name="passwordConfirm"
                   value={form.passwordConfirm}
@@ -130,6 +169,7 @@ function RegisterJsx(props) {
               <div className="name">
                 <input
                   type="text"
+                  onBlur={handeblur}
                   onChange={handlechange}
                   name="name"
                   value={form.phone}
@@ -141,6 +181,7 @@ function RegisterJsx(props) {
               <div className="phone">
                 <input
                   type="text"
+                  onBlur={handeblur}
                   onChange={handlechange}
                   name="phone"
                   value={form.phone}
