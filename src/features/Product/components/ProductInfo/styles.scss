@@ -1,0 +1,193 @@
+@import '../../../../utils/page.scss';
+
+.product_detail {
+  padding-top: 70px;
+
+  .container {
+    .row {
+      display: flex;
+
+      .left {
+        width: 384px;
+        height: 355px;
+        text-align: center;
+        margin-left: 20px;
+
+        // border: 1px solid black;
+        background-color: #f8f8f8;
+
+        img {
+          width: 300px;
+          margin-top: 20px;
+        }
+      }
+
+      .right {
+        width: 60%;
+        margin-left: 80px;
+
+        h2 {
+          font-family: 'Inter';
+          font-style: normal;
+          @include text($text-3xl, $text-light, $text-c1-dark);
+          line-height: 36px;
+        }
+
+        p {
+          font-family: 'Inter';
+          font-style: normal;
+          @include text($text-base, $text-regular, $text-c1-dark);
+          line-height: 19px;
+        }
+
+        h4 {
+          font-family: 'Inter';
+          font-style: normal;
+          @include text($text-3xl, $text-medium, $text-c1-success);
+
+          line-height: 29px;
+        }
+
+        .size {
+          margin-left: -10px;
+          .disables {
+            width: 50px;
+            height: 50px;
+            background: #cccccc;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 29px;
+          }
+          a {
+            text-decoration: none;
+            border: 1px solid black;
+            background: #cccccc;
+            // color: #1E1D1D;
+            font-family: 'Inter';
+            font-style: normal;
+            line-height: 29px;
+            margin: 0 10px;
+            @include text($text-2xl, $text-semibold, $text-c1-dark);
+          }
+        }
+
+        h3 {
+          font-family: 'Inter';
+          font-style: normal;
+          line-height: 36px;
+          margin: 10px 0;
+          @include text($text-3xl, $text-semibold, $text-c1-danger);
+        }
+
+        .group-input {
+          margin: 10px 0;
+
+          .disable {
+            font-family: 'Inter';
+            font-style: normal;
+            line-height: 36px;
+            background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
+            width: 40px;
+            height: 40px;
+            @include text($text-3xl, $text-regular, $text-c1-light);
+          }
+
+          .input {
+            font-family: 'Inter';
+            font-style: normal;
+            line-height: 36px;
+            width: 42px;
+            height: 36px;
+            left: 597px;
+            top: 377px;
+            text-align: center;
+            border: 0;
+            @include text($text-3xl, $text-regular, $text-c1-dark);
+          }
+        }
+
+        .group-button {
+          width: 175px;
+          height: 64px;
+          left: 527px;
+          top: 427px;
+          background: linear-gradient(270deg, rgba(62, 32, 248, 0.9) 5.14%, #d017ee 89.71%);
+
+          button {
+            font-family: 'Inter';
+            font-style: normal;
+            line-height: 29px;
+            border: 0;
+            background-color: rgba(0, 0, 0, 0);
+            margin: 17px 0 0 22px;
+            @include text($text-2xl, $text-medium, $text-c1-light);
+          }
+        }
+      }
+    }
+    .row_related {
+      display: flex;
+
+      .col {
+        margin-top: 50px;
+
+        .item {
+          width: 334px;
+          background-color: #f8f8f8;
+          height: 100%;
+
+          .thumbnail {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            img {
+              width: 220px;
+              transform: translateX(50px);
+            }
+
+            h3 {
+              line-height: 29px;
+              @include text($text-2xl, $text-light, $text-c1-dark);
+            }
+
+            p {
+              flex: 1;
+              line-height: 24px;
+              @include text($text-1xl, $text-light, $text-c1-secondary);
+            }
+
+            .btn {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              margin-top: auto;
+              padding: 0;
+
+              a {
+                padding-top: 12px;
+                text-decoration: none;
+                background-color: #e1b067;
+                width: 175px;
+                height: 55px;
+                border: none;
+                @include text($text-1xl, 200, $text-c1-dark);
+              }
+
+              span {
+                text-align: center;
+                background-color: #dedddc;
+                width: 50%;
+                padding-top: 12px;
+                line-height: 29px;
+                @include text($text-2xl, $text-semibold, $text-c1-dark);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

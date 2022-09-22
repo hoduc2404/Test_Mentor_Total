@@ -1,0 +1,78 @@
+@import '../../../../utils/page.scss';
+
+.product-feature {
+  .container {
+    h2 {
+      text-align: center;
+      margin: 50px;
+      font-family: 'Inter';
+      font-style: normal;
+      line-height: 48px;
+
+      @include text($text-4xl, $text-regular, $text-c1-dark);
+    }
+
+    .row {
+      display: flex;
+
+      .col {
+        margin-top: 50px;
+
+        .item {
+          width: 334px;
+          background-color: #f8f8f8;
+          height: 100%;
+
+          .thumbnail {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            img {
+              width: 220px;
+              transform: translateX(50px);
+            }
+
+            h3 {
+              line-height: 29px;
+              @include text($text-2xl, $text-light, $text-c1-dark);
+            }
+
+            p {
+              flex: 1;
+              line-height: 24px;
+              @include text($text-1xl, $text-light, $text-c1-secondary);
+            }
+
+            .btn {
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              margin-top: auto;
+              padding: 0;
+
+              a {
+                padding-top: 12px;
+                text-decoration: none;
+                background-color: #e1b067;
+                width: 175px;
+                height: 55px;
+                border: none;
+                @include text($text-1xl, 200, $text-c1-dark);
+              }
+
+              span {
+                text-align: center;
+                background-color: #dedddc;
+                width: 50%;
+                padding-top: 12px;
+                line-height: 29px;
+                @include text($text-2xl, $text-semibold, $text-c1-dark);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
